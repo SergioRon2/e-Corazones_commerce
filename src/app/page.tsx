@@ -3,11 +3,11 @@ import ParticleComponent from "@/(features)/components/tsParticles/particles.js"
 
 function Home() {
   return <>
-      <main className="flex h-screen w-screen flex-row">
-        <div className="w-2/3">
+      <main className="flex h-screen w-screen items-center justify-center flex-column lg:flex-row">
+        <div className="w-full lg:w-2/3">
           <ParticleComponent />
         </div>
-        <div className="bg-white w-1/3 z-50">
+        <div className="bg-white absolute lg:relative w-11/12 lg:w-1/3 z-50">
           <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
               <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
