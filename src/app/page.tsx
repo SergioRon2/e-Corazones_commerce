@@ -1,11 +1,39 @@
 'use client'
-import ParticleComponent from "@/(features)/components/tsParticles/particles.js"
+import ParticleComponent from "@/app/(features)/components/tsParticles/particles.js"
+import { useRouter } from "next/navigation"
+import React from "react";
+import { useState } from "react";
+
+// eslint-disable-next-line react/display-name
+const RenderizedParticles = React.memo(() => (
+  <ParticleComponent />
+));
 
 function Home() {
+  const [email, setEmail] = useState<string>();
+  const [password, setPassword] = useState<string>();
+
+  const router = useRouter();
+
+  const onSubmit = () => {
+    if (email != 'admin@email.com' || password != '123456789') {
+      alert('Credenciales incorrectas!');
+    } else {
+      router.push('/main');
+    }
+  }
+
+  const handleChangeEmail = (e: any) => {
+    setEmail(e.target.value);
+  }
+  const handleChangePassword = (e: any) => {
+    setPassword(e.target.value);
+  }
+
   return <>
       <main className="flex h-screen w-screen items-center justify-center lg:justify-normal lg:items-start flex-column lg:flex-row">
         <div className="w-full lg:w-2/3">
-          <ParticleComponent />
+          <RenderizedParticles/>
         </div>
         <div className="bg-white absolute lg:relative lg:h-screen w-11/12 lg:w-1/3 z-50">
           <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -26,6 +54,8 @@ function Home() {
                       id="email"
                       name="email"
                       type="email"
+                      onChange={handleChangeEmail}
+                      value={email}
                       required
                       autoComplete="email"
                       className="block w-full rounded-md border-0 py-1.5 focus:ring-black focus:outline-none px-4 focus:border-black focus:ring-2 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 sm:text-sm/6"
@@ -49,6 +79,8 @@ function Home() {
                       id="password"
                       name="password"
                       type="password"
+                      onChange={handleChangePassword}
+                      value={password}
                       required
                       autoComplete="current-password"
                       className="block w-full rounded-md border-0 py-1.5 focus:ring-black focus:outline-none px-4 focus:border-black focus:ring-2 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 sm:text-sm/6"
@@ -58,20 +90,13 @@ function Home() {
   
                 <div>
                   <button
-                    type="submit"
+                    onClick={onSubmit}
                     className="flex w-full justify-center rounded-md bg-black px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
                   >
                     Iniciar sesión
                   </button>
                 </div>
               </form>
-  
-              <p className="mt-10 text-center text-sm/6 text-gray-500">
-                ¿No eres miembro?{' '}
-                <a href="#" className="font-semibold text-black hover:text-gray-800">
-                Comience una prueba gratuita de 14 días
-                </a>
-              </p>
             </div>
           </div>
         </div>

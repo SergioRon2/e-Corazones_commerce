@@ -24,7 +24,7 @@ export default function ParticlesContainer() {
           value: "#000",
         },
       },
-      fpsLimit: 120,
+      fpsLimit: 144,
       interactivity: {
         events: {
           onClick: {
